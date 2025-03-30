@@ -3,6 +3,9 @@ import express from "express";
 import { createDownloadLinks } from "./decryption.js"; // Ensure proper file path
 
 const app = express();
+app.get('/',(req,res)=>{
+    res.status(200).json("health is fine");
+})
 
 app.get("/search", async (req, res) => {
     try {
