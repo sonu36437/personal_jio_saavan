@@ -37,19 +37,19 @@ app.get("/search", async (req, res) => {
             return res.status(400).json({ error: "Missing query parameter 'q'" });
         }
 
-      const response= await fetchJioSaavnResults(queryParam);
+    //   const response= await fetchJioSaavnResults(queryParam);
         
-        const results = response.data?.results;
-        if (!results || results.length === 0) {
-            return res.status(404).json({ error: "No results found" });
-        }
+    //     const results = response.data?.results;
+    //     if (!results || results.length === 0) {
+    //         return res.status(404).json({ error: "No results found" });
+    //     }
 
-        const encryptedUrl = results[0].more_info?.encrypted_media_url;
-        if (!encryptedUrl) {
-            return res.status(404).json({ error: "No encrypted URL found" });
-        }
+    //     const encryptedUrl = results[0].more_info?.encrypted_media_url;
+    //     if (!encryptedUrl) {
+    //         return res.status(404).json({ error: "No encrypted URL found" });
+    //     }
 
-        const decryptedUrls = createDownloadLinks(encryptedUrl);
+        const decryptedUrls = createDownloadLinks(queryParam);
         res.json(decryptedUrls);
 
     } catch (error) {
