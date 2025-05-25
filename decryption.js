@@ -14,7 +14,8 @@ export const createDownloadLinks = (encryptedMediaUrl) => {
   const key = '38346591'
   const iv = '00000000'
 
-  const encrypted = crypto.util.decode64(encryptedMediaUrl)
+  // const encrypted = crypto.util.decode64((encryptedMediaUrl))
+  const encrypted = encodeURIComponent(crypto.util.decode64(encryptedMediaUrl));
   console.log(encrypted);
   
   const decipher = crypto.cipher.createDecipher('DES-ECB', crypto.util.createBuffer(key))
